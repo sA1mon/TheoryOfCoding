@@ -1,9 +1,10 @@
-﻿using Coding.AlgebraicCoding;
+﻿
+using Coding.ArithmeticCoding;
 using NUnit.Framework;
 
 namespace CodingUnitTests
 {
-    public class AlgebraicCoding
+    public class ArithmeticCoding
     {
         [TestCase("abcaa", "46")]
         [TestCase("aabcb", "121")]

@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 
-namespace Coding.AlgebraicCoding
+namespace Coding.ArithmeticCoding
 {
     public class Decoder
     {
@@ -23,7 +24,12 @@ namespace Coding.AlgebraicCoding
 
             double left = 0d, right = 1d;
 
+            //for (int i = 0; i < UPPER; i++)
+            //{
+                
+            //}
 
+            throw new NotImplementedException();
         }
     }
 }

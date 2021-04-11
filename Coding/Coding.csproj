@@ -41,9 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AlgebraicCoding\Coder.cs" />
-    <Compile Include="AlgebraicCoding\Decoder.cs" />
-    <Compile Include="AlgebraicCoding\Resources\Interval.cs" />
+    <Compile Include="ArithmeticCoding\Coder.cs" />
+    <Compile Include="ArithmeticCoding\Decoder.cs" />
+    <Compile Include="ArithmeticCoding\Resources\Interval.cs" />
     <Compile Include="BaseCoder.cs" />
     <Compile Include="BaseDecoder.cs" />
     <Compile Include="Haffman\Coder.cs" />

@@ -1,4 +1,4 @@
-﻿namespace Coding.AlgebraicCoding.Resources
+﻿namespace Coding.ArithmeticCoding.Resources
 {
     public class Interval
     {

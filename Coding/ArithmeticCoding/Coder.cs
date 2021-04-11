@@ -1,13 +1,13 @@
-﻿using Coding.AlgebraicCoding.Resources;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
+using Coding.ArithmeticCoding.Resources;
 
-namespace Coding.AlgebraicCoding
+namespace Coding.ArithmeticCoding
 {
     public sealed class Coder : BaseCoder
     {
-        private Dictionary<char, int> _indexes;
+        private readonly Dictionary<char, int> _indexes;
 
         public Coder(string initial) : base(initial)
         {

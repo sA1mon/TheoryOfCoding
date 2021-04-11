@@ -13,8 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Coding\Coding.csproj" />
     <ProjectReference Include="..\Compress\Compress.csproj" />
-    <ProjectReference Include="..\Haffman\Coding.csproj" />
   </ItemGroup>
 
 </Project>
