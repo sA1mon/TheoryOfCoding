@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Coding.AlgebraicCoding.Resources
+﻿namespace Coding.AlgebraicCoding.Resources
 {
     public class Interval
     {
@@ -11,6 +9,11 @@ namespace Coding.AlgebraicCoding.Resources
         {
             LeftCorner = left;
             RightCorner = right;
+        }
+
+        public bool Contains(double value)
+        {
+            return value > LeftCorner && value <= RightCorner;
         }
     }
 }

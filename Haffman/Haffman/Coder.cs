@@ -10,7 +10,7 @@ namespace Coding.Haffman
         public Coder(string initial) : base(initial)
         {
             Frequency = new List<Symbol>();
-            FillFrequencyList();
+            FillFrequencyList(true);
         }
 
         public override string Encode()

@@ -20,7 +20,7 @@ namespace Coding
             return CurrentString;
         }
 
-        protected virtual void FillFrequencyList()
+        protected virtual void FillFrequencyList(bool needsSort)
         {
             var freq = new Dictionary<string, int>();
             foreach (var symbol in CurrentString.Select(x => x.ToString()))
@@ -36,7 +36,8 @@ namespace Coding
                 Frequency.Add(new Symbol(pair.Key, pair.Value));
             }
 
-            Frequency.Sort(new CharComparer());
+            if (needsSort)
+                Frequency.Sort(new CharComparer());
         }
     }
 }

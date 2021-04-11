@@ -12,7 +12,7 @@ namespace Coding.AlgebraicCoding
         public Coder(string initial) : base(initial)
         {
             _indexes = new Dictionary<char, int>();
-            FillFrequencyList();
+            FillFrequencyList(false);
         }
 
         public override string Encode()
@@ -20,9 +20,9 @@ namespace Coding.AlgebraicCoding
             return GetCodingNumber();
         }
 
-        protected override void FillFrequencyList()
+        protected override void FillFrequencyList(bool needsSort)
         {
-            base.FillFrequencyList();
+            base.FillFrequencyList(needsSort);
 
             for (var i = 0; i < Frequency.Count; i++)
             {
@@ -57,7 +57,8 @@ namespace Coding.AlgebraicCoding
                 }
                 else
                 {
-                    codingNumberBuilder.Append((char)((left[iterator] + 1) % 10 + '0'));
+                    var nextSymbol = (left[iterator] + 1) % '0' + '0';
+                    codingNumberBuilder.Append((char)nextSymbol);
                     isMatchFound = true;
                 }
             }
@@ -72,7 +73,7 @@ namespace Coding.AlgebraicCoding
                 var intervals = new List<Interval>();
                 var iterator = leftCorner;
                 var len = rightCorner - leftCorner;
-                var countOfSymbols = Frequency.Count;
+                var countOfSymbols = CurrentString.Length;
 
                 AddIntervalsInList(len, countOfSymbols, iterator, intervals);
 

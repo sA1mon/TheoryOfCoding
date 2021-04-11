@@ -10,7 +10,7 @@ namespace Coding.ShannonFano
         {
             CurrentString = currentString;
             Frequency = new List<Symbol>();
-            FillFrequencyList();
+            FillFrequencyList(true);
         }
 
         public override string Encode()
