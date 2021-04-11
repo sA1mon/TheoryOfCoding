@@ -1,23 +1,20 @@
-﻿using Haffman.Resources;
+﻿using Coding.Haffman.Resources;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Haffman
+namespace Coding.Haffman
 {
-    public class Coder
+    public sealed class Coder : BaseCoder
     {
-        public string CurrentString { get; set; }
-        private readonly List<Symbol> _frequency;
-
         public Coder(string currentString)
         {
             CurrentString = currentString;
-            _frequency = new List<Symbol>();
+            Frequency = new List<Symbol>();
             FillFrequencyList();
         }
 
-        public string Encode()
+        public override string Encode()
         {
             var codes = GetCodes();
             var sb = new StringBuilder();
@@ -33,7 +30,7 @@ namespace Haffman
         public IDictionary<char, string> GetCodes()
         {
             var codes = new Dictionary<char, string>();
-            var frequency = new List<Symbol>(_frequency);
+            var frequency = new List<Symbol>(Frequency);
             var charComparer = new CharComparer();
 
             while (frequency.Count > 1)
@@ -78,25 +75,6 @@ namespace Haffman
             }
 
             ByPass(symbol, new StringBuilder());
-        }
-
-        private void FillFrequencyList()
-        {
-            var freq = new Dictionary<string, int>();
-            foreach (var symbol in CurrentString.Select(x => x.ToString()))
-            {
-                if (!freq.ContainsKey(symbol))
-                    freq[symbol] = 0;
-
-                freq[symbol]++;
-            }
-
-            foreach (var pair in freq)
-            {
-                _frequency.Add(new Symbol(pair.Key, pair.Value));
-            }
-
-            _frequency.Sort(new CharComparer());
         }
     }
 }

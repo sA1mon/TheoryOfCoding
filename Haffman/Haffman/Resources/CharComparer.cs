@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Haffman.Resources
+namespace Coding.Haffman.Resources
 {
     class CharComparer : IComparer<Symbol>
     {

@@ -14,7 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Compress\Compress.csproj" />
-    <ProjectReference Include="..\Haffman\Haffman.csproj" />
+    <ProjectReference Include="..\Haffman\Coding.csproj" />
   </ItemGroup>
 
 </Project>
