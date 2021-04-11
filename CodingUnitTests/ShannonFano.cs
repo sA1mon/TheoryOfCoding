@@ -34,21 +34,21 @@ namespace CodingUnitTests
             Assert.AreEqual(actual, expectedValue);
         }
 
-        //[Test]
-        //[TestCase("aaaabbbcde", "000010101011011111110")]
-        //[TestCase("a", "0")]
-        //[TestCase("aaaaaaaa", "00000000")]
-        //public void DecodeTest(string input, string decoded)
-        //{
-        //    //arrange
-        //    var coder = new Coder(input);
-        //    var decoder = new Decoder(decoded, coder.GetCodes());
+        [Test]
+        [TestCase("aaabbcde", "000101011011101111")]
+        [TestCase("a", "0")]
+        [TestCase("aaaaaaaa", "00000000")]
+        public void DecodeTest(string input, string decoded)
+        {
+            //arrange
+            var coder = new Coder(input);
+            var decoder = new Decoder(decoded, coder.GetCodes());
 
-        //    //act
-        //    var actual = decoder.Decode();
+            //act
+            var actual = decoder.Decode();
 
-        //    //assert
-        //    Assert.AreEqual(input, actual);
-        //}
+            //assert
+            Assert.AreEqual(input, actual);
+        }
     }
 }
