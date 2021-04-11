@@ -1,5 +1,4 @@
 using Coding.Haffman;
-using Haffman;
 using NUnit.Framework;
 
 namespace CodingUnitTests

@@ -3,9 +3,8 @@ using System.Text;
 
 namespace Coding.Haffman
 {
-    public class Decoder
+    public class Decoder : BaseDecoder
     {
-        public string Encoded { get; }
         private readonly IDictionary<string, char> _codes;
 
         public Decoder(string encoded, IDictionary<string, char> codes)
@@ -25,7 +24,7 @@ namespace Coding.Haffman
             }
         }
 
-        public string Decode()
+        public override string Decode()
         {
             var sb = new StringBuilder();
             var resultSb = new StringBuilder();

@@ -7,12 +7,10 @@ namespace Coding.Haffman
 {
     public class Coder : BaseCoder
     {
-        private readonly List<Symbol> _frequency;
-
         public Coder(string currentString)
         {
             CurrentString = currentString;
-            _frequency = new List<Symbol>();
+            Frequency = new List<Symbol>();
             FillFrequencyList();
         }
 
@@ -32,7 +30,7 @@ namespace Coding.Haffman
         public IDictionary<char, string> GetCodes()
         {
             var codes = new Dictionary<char, string>();
-            var frequency = new List<Symbol>(_frequency);
+            var frequency = new List<Symbol>(Frequency);
             var charComparer = new CharComparer();
 
             while (frequency.Count > 1)
@@ -92,10 +90,10 @@ namespace Coding.Haffman
 
             foreach (var pair in freq)
             {
-                _frequency.Add(new Symbol(pair.Key, pair.Value));
+                Frequency.Add(new Symbol(pair.Key, pair.Value));
             }
 
-            _frequency.Sort(new CharComparer());
+            Frequency.Sort(new CharComparer());
         }
     }
 }
