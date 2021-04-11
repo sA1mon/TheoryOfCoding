@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text;
 
-namespace Haffman.Haffman
+namespace Coding.Haffman
 {
     public class Decoder
     {

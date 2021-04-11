@@ -9,8 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodingUnitTests", "CodingUn
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Compress", "Compress\Compress.csproj", "{C5B902D4-CA7B-411F-B653-A54FDDC8C86F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShannonFano", "ShannonFano\ShannonFano.csproj", "{26A29075-6D5F-4EC2-B881-35A611461CF0}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,10 +27,6 @@ Global
 		{C5B902D4-CA7B-411F-B653-A54FDDC8C86F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C5B902D4-CA7B-411F-B653-A54FDDC8C86F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C5B902D4-CA7B-411F-B653-A54FDDC8C86F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{26A29075-6D5F-4EC2-B881-35A611461CF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{26A29075-6D5F-4EC2-B881-35A611461CF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{26A29075-6D5F-4EC2-B881-35A611461CF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{26A29075-6D5F-4EC2-B881-35A611461CF0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

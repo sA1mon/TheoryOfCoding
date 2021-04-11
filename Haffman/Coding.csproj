@@ -46,7 +46,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Haffman\Resources\CharComparer.cs" />
     <Compile Include="Haffman\Resources\Symbol.cs" />
+    <Compile Include="ShannonFano\Coder.cs" />
+    <Compile Include="ShannonFano\Decoder.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="ShannonFano\Resources\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,4 +1,4 @@
-﻿namespace ShannonFano
+﻿namespace Coding.ShannonFano
 {
     public class Decoder
     {
