@@ -1,9 +1,9 @@
-﻿using Haffman.Resources;
+﻿using Coding.Haffman.Resources;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Haffman
+namespace Coding.Haffman
 {
     public class Coder
     {

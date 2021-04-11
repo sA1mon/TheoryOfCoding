@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Haffman", "Haffman\Haffman.csproj", "{00E52CA8-FC08-4881-A800-335B108AF71C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Coding", "Haffman\Coding.csproj", "{00E52CA8-FC08-4881-A800-335B108AF71C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodingUnitTests", "CodingUnitTests\CodingUnitTests.csproj", "{B0BD1600-BED9-46AC-B120-92FA67AFA83C}"
 EndProject

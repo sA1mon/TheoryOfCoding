@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+using Coding.Haffman;
 using Haffman;
 using NUnit.Framework;
 
