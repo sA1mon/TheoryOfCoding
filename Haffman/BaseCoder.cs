@@ -1,5 +1,6 @@
-﻿using System.Collections.Generic;
-using Coding.Haffman.Resources;
+﻿using Coding.Haffman.Resources;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Coding
 {
@@ -11,6 +12,25 @@ namespace Coding
         public virtual string Encode()
         {
             return CurrentString;
+        }
+
+        protected void FillFrequencyList()
+        {
+            var freq = new Dictionary<string, int>();
+            foreach (var symbol in CurrentString.Select(x => x.ToString()))
+            {
+                if (!freq.ContainsKey(symbol))
+                    freq[symbol] = 0;
+
+                freq[symbol]++;
+            }
+
+            foreach (var pair in freq)
+            {
+                Frequency.Add(new Symbol(pair.Key, pair.Value));
+            }
+
+            Frequency.Sort(new CharComparer());
         }
     }
 }

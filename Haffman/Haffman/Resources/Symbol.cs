@@ -1,6 +1,6 @@
 ﻿namespace Coding.Haffman.Resources
 {
-    internal class Symbol
+    public class Symbol
     {
         public string Current { get; set; }
         public int Frequency { get; set; }

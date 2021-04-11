@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Coding.Haffman
 {
-    public class Coder : BaseCoder
+    public sealed class Coder : BaseCoder
     {
         public Coder(string currentString)
         {
@@ -75,25 +75,6 @@ namespace Coding.Haffman
             }
 
             ByPass(symbol, new StringBuilder());
-        }
-
-        private void FillFrequencyList()
-        {
-            var freq = new Dictionary<string, int>();
-            foreach (var symbol in CurrentString.Select(x => x.ToString()))
-            {
-                if (!freq.ContainsKey(symbol))
-                    freq[symbol] = 0;
-
-                freq[symbol]++;
-            }
-
-            foreach (var pair in freq)
-            {
-                Frequency.Add(new Symbol(pair.Key, pair.Value));
-            }
-
-            Frequency.Sort(new CharComparer());
         }
     }
 }
