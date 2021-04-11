@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseCoder.cs" />
     <Compile Include="Haffman\Coder.cs" />
     <Compile Include="Haffman\Decoder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

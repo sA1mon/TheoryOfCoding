@@ -5,9 +5,8 @@ using System.Text;
 
 namespace Coding.Haffman
 {
-    public class Coder
+    public class Coder : BaseCoder
     {
-        public string CurrentString { get; set; }
         private readonly List<Symbol> _frequency;
 
         public Coder(string currentString)
@@ -17,7 +16,7 @@ namespace Coding.Haffman
             FillFrequencyList();
         }
 
-        public string Encode()
+        public override string Encode()
         {
             var codes = GetCodes();
             var sb = new StringBuilder();
