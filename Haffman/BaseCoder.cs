@@ -12,6 +12,7 @@ namespace Coding
         public BaseCoder(string initial)
         {
             CurrentString = initial;
+            Frequency = new List<Symbol>();
         }
 
         public virtual string Encode()
@@ -19,7 +20,7 @@ namespace Coding
             return CurrentString;
         }
 
-        protected void FillFrequencyList()
+        protected virtual void FillFrequencyList()
         {
             var freq = new Dictionary<string, int>();
             foreach (var symbol in CurrentString.Select(x => x.ToString()))
