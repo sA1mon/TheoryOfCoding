@@ -1,4 +1,4 @@
-﻿namespace Coding.Haffman.Resources
+﻿namespace Coding
 {
     public class Symbol
     {

@@ -2,7 +2,7 @@
 
 namespace Coding.Haffman.Resources
 {
-    class CharComparer : IComparer<Symbol>
+    internal class CharComparer : IComparer<Symbol>
     {
         public int Compare(Symbol x, Symbol y)
         {

@@ -7,9 +7,8 @@ namespace Coding.Haffman
 {
     public sealed class Coder : BaseCoder
     {
-        public Coder(string currentString)
+        public Coder(string initial) : base(initial)
         {
-            CurrentString = currentString;
             Frequency = new List<Symbol>();
             FillFrequencyList();
         }

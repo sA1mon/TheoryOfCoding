@@ -6,8 +6,13 @@ namespace Coding
 {
     public class BaseCoder
     {
-        public string CurrentString { get; set; }
+        public string CurrentString { get; protected set; }
         protected List<Symbol> Frequency;
+
+        public BaseCoder(string initial)
+        {
+            CurrentString = initial;
+        }
 
         public virtual string Encode()
         {

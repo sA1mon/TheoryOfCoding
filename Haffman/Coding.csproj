@@ -41,18 +41,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlgebraicCoding\Coder.cs" />
+    <Compile Include="AlgebraicCoding\Decoder.cs" />
     <Compile Include="BaseCoder.cs" />
     <Compile Include="BaseDecoder.cs" />
     <Compile Include="Haffman\Coder.cs" />
     <Compile Include="Haffman\Decoder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Haffman\Resources\CharComparer.cs" />
-    <Compile Include="Haffman\Resources\Symbol.cs" />
+    <Compile Include="Symbol.cs" />
     <Compile Include="ShannonFano\Coder.cs" />
     <Compile Include="ShannonFano\Decoder.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ShannonFano\Resources\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
