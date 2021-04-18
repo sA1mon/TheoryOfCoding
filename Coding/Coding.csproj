@@ -55,6 +55,7 @@
     <Compile Include="RleAndBurrowsWheeler\Decoder.cs" />
     <Compile Include="RleAndBurrowsWheeler\Resources\Bw.cs" />
     <Compile Include="RleAndBurrowsWheeler\Resources\Rle.cs" />
+    <Compile Include="RleAndBurrowsWheeler\Resources\StringBuilderComparer.cs" />
     <Compile Include="RleAndBurrowsWheeler\Resources\TransformResult.cs" />
     <Compile Include="Symbol.cs" />
     <Compile Include="ShannonFano\Coder.cs" />

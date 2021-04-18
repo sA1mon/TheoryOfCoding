@@ -14,7 +14,8 @@ namespace Coding.RleAndBurrowsWheeler
 
         public TransformResult Encode()
         {
-            var shifts = new SortedSet<string>(Bw.GetShiftsOf(CurrentString));
+            var shifts = new List<string>(Bw.GetShiftsOf(CurrentString));
+            shifts.Sort();
             var position = Bw.GetIndexOf(CurrentString, shifts);
 
             return Rle.Transform(shifts, position);
