@@ -1,14 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using Coding.ArithmeticCoding.Resources;
+using System.Collections.Generic;
 using System.Numerics;
 
 namespace Coding.ArithmeticCoding
 {
-    public sealed class Coder : BaseCoder
+    public sealed class Coder : ArithmeticBase
     {
-        private IDictionary<char, long> _frequency;
-        private IDictionary<char, long> _cumulativeFreq;
-
-        public Coder(string initial) : base(initial)
+        public Coder(string initial)
         {
             CurrentString = initial;
             FillFrequencyList(false);
@@ -16,47 +14,30 @@ namespace Coding.ArithmeticCoding
 
         protected override void FillFrequencyList(bool needsSort)
         {
-            _frequency = new Dictionary<char, long>();
+            Frequency = new Dictionary<char, long>();
 
             foreach (var c in CurrentString)
             {
-                if (!_frequency.ContainsKey(c))
-                    _frequency[c] = 0;
+                if (!Frequency.ContainsKey(c))
+                    Frequency[c] = 0;
 
-                _frequency[c]++;
+                Frequency[c]++;
             }
 
             SetUpCumulativeFrequency();
         }
 
-        private void SetUpCumulativeFrequency()
+        public string Encode()
         {
-            _cumulativeFreq = new Dictionary<char, long>();
-
-            var total = 0L;
-            for (var i = 0; i < 256; i++)
-            {
-                var c = (char)i;
-                if (_frequency.ContainsKey(c))
-                {
-                    var currentFreq = _frequency[c];
-                    _cumulativeFreq[c] = total;
-                    total += currentFreq;
-                }
-            }
-        }
-
-        public override string Encode()
-        {
-            BigInteger baseValue = CurrentString.Length, 
-                lowerValue = 0, 
+            BigInteger baseValue = CurrentString.Length,
+                lowerValue = 0,
                 productFreq = 1;
 
             foreach (var c in CurrentString)
             {
-                BigInteger currentCumFreq = _cumulativeFreq[c];
+                BigInteger currentCumFreq = CumulativeFreq[c];
                 lowerValue = lowerValue * baseValue + currentCumFreq * productFreq;
-                productFreq *= _frequency[c];
+                productFreq *= Frequency[c];
             }
 
             BigInteger upper = lowerValue + productFreq,
