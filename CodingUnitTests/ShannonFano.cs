@@ -3,9 +3,9 @@ using NUnit.Framework;
 
 namespace CodingUnitTests
 {
+    [TestFixture]
     public class ShannonFano
     {
-        [Test]                            
         [TestCase("aaabbcde", "000101011011101111")]
         [TestCase("a", "0")]
         [TestCase("aaaaaaaa", "00000000")]
@@ -21,7 +21,6 @@ namespace CodingUnitTests
             Assert.AreEqual(expected, actual);
         }
 
-        //[Test]
         [TestCase("aaabbcde", "000101011011101111", 3.56d)]
         [TestCase("a", "0", 8d)]
         [TestCase("aaaaaaaa", "00000000", 8d)]
@@ -34,7 +33,6 @@ namespace CodingUnitTests
             Assert.AreEqual(actual, expectedValue);
         }
 
-        [Test]
         [TestCase("aaabbcde", "000101011011101111")]
         [TestCase("a", "0")]
         [TestCase("aaaaaaaa", "00000000")]

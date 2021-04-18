@@ -3,9 +3,9 @@ using NUnit.Framework;
 
 namespace CodingUnitTests
 {
+    [TestFixture]
     public class Haffman
     {
-        [Test]
         [TestCase("aaaabbbcde", "000010101011011111110")]
         [TestCase("a", "0")]
         [TestCase("aaaaaaaa", "00000000")]
@@ -21,7 +21,6 @@ namespace CodingUnitTests
             Assert.AreEqual(expected, actual);
         }
 
-        [Test]
         [TestCase("aaaabbbcde", "000010101011011111110", 3.81d)]
         [TestCase("a", "0", 8d)]
         [TestCase("aaaaaaaa", "00000000", 8d)]
@@ -34,7 +33,6 @@ namespace CodingUnitTests
             Assert.AreEqual(actual, expectedValue);
         }
 
-        [Test]
         [TestCase("aaaabbbcde", "000010101011011111110")]
         [TestCase("a", "0")]
         [TestCase("aaaaaaaa", "00000000")]
