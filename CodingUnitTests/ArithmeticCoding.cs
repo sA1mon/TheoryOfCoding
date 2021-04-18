@@ -29,6 +29,7 @@ namespace CodingUnitTests
         [TestCase("abcda")]
         [TestCase("аываыв")]
         [TestCase("Безумно можно быть первым, безумно можно через стены, попасть туда, окунуться в даль...")]
+        [TestCase("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")]
         public void DecodingTest(string expected)
         {
             //arrange

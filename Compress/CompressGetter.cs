@@ -4,7 +4,7 @@ namespace Compress
 {
     public static class CompressGetter
     {
-        private const int AlphaSize = 8;
+        private const int AlphaSize = 16;
         public static double GetCompress(string initial, string compressed)
         {
             double initLen = initial.Length * AlphaSize;
