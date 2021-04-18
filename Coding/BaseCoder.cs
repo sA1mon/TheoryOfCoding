@@ -6,15 +6,21 @@ namespace Coding
 {
     public class BaseCoder
     {
-        public string CurrentString { get; set; }
+        public string CurrentString { get; protected set; }
         protected List<Symbol> Frequency;
+
+        public BaseCoder(string initial)
+        {
+            CurrentString = initial;
+            Frequency = new List<Symbol>();
+        }
 
         public virtual string Encode()
         {
             return CurrentString;
         }
 
-        protected void FillFrequencyList()
+        protected virtual void FillFrequencyList(bool needsSort)
         {
             var freq = new Dictionary<string, int>();
             foreach (var symbol in CurrentString.Select(x => x.ToString()))
@@ -30,7 +36,8 @@ namespace Coding
                 Frequency.Add(new Symbol(pair.Key, pair.Value));
             }
 
-            Frequency.Sort(new CharComparer());
+            if (needsSort)
+                Frequency.Sort(new CharComparer());
         }
     }
 }

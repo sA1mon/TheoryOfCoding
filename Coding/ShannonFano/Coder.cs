@@ -1,6 +1,4 @@
-﻿using System;
-using Coding.Haffman.Resources;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
@@ -8,11 +6,11 @@ namespace Coding.ShannonFano
 {
     public sealed class Coder : BaseCoder
     {
-        public Coder(string initial)
+        public Coder(string currentString) : base(currentString)
         {
-            CurrentString = initial;
+            CurrentString = currentString;
             Frequency = new List<Symbol>();
-            FillFrequencyList();
+            FillFrequencyList(true);
         }
 
         public override string Encode()
@@ -37,7 +35,7 @@ namespace Coding.ShannonFano
             }
 
             var frequencyDictionary = Frequency
-                .ToDictionary(x => x.Current, 
+                .ToDictionary(x => x.Current,
                     x => x.Frequency);
 
             var tree = GetSplitedFrequencyRepresentation(stringBuilder.ToString(), frequencyDictionary);
@@ -62,14 +60,14 @@ namespace Coding.ShannonFano
             ByPass(tree.Right, codes, new StringBuilder(sb + "1"));
         }
 
-        private static Symbol GetSplitedFrequencyRepresentation(string frequencyString, IDictionary<string, int> frequencyDictionary) //recursive
+        private static Symbol GetSplitedFrequencyRepresentation(string frequencyString, IDictionary<string, long> frequencyDictionary) //recursive
         {
             if (frequencyString.Length == 1)
                 return new Symbol(frequencyString, frequencyDictionary[frequencyString]);
 
             var leftIterator = 0;
             var rightIterator = frequencyString.Length - 1;
-            int leftSum = frequencyDictionary[frequencyString[leftIterator].ToString()], 
+            long leftSum = frequencyDictionary[frequencyString[leftIterator].ToString()],
                 rightSum = frequencyDictionary[frequencyString[rightIterator].ToString()];
 
             leftIterator++; rightIterator--;
@@ -93,7 +91,7 @@ namespace Coding.ShannonFano
             var tree = new Symbol(frequencyString, leftSum + rightSum)
             {
                 Left = new Symbol(frequencyString.Substring(0, leftIterator), leftSum),
-                Right = new Symbol(frequencyString.Substring(leftIterator, 
+                Right = new Symbol(frequencyString.Substring(leftIterator,
                         frequencyString.Length - leftIterator),
                     rightSum)
             };
