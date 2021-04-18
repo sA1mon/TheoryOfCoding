@@ -6,6 +6,7 @@ using System.Numerics;
 
 namespace CodingUnitTests
 {
+    [TestFixture]
     public class ArithmeticCoding
     {
         [TestCase("abcaa", "145 * 10^1")]
