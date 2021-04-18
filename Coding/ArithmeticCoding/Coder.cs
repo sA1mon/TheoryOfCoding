@@ -1,100 +1,78 @@
 ﻿using System.Collections.Generic;
-using System.Globalization;
-using System.Text;
-using Coding.ArithmeticCoding.Resources;
+using System.Numerics;
 
 namespace Coding.ArithmeticCoding
 {
     public sealed class Coder : BaseCoder
     {
-        private readonly Dictionary<char, int> _indexes;
+        private IDictionary<char, long> _frequency;
+        private IDictionary<char, long> _cumulativeFreq;
 
         public Coder(string initial) : base(initial)
         {
-            _indexes = new Dictionary<char, int>();
+            CurrentString = initial;
             FillFrequencyList(false);
-        }
-
-        public override string Encode()
-        {
-            return GetCodingNumber();
         }
 
         protected override void FillFrequencyList(bool needsSort)
         {
-            base.FillFrequencyList(needsSort);
+            _frequency = new Dictionary<char, long>();
 
-            for (var i = 0; i < Frequency.Count; i++)
+            foreach (var c in CurrentString)
             {
-                _indexes.Add(Frequency[i].Current[0], i);
+                if (!_frequency.ContainsKey(c))
+                    _frequency[c] = 0;
+
+                _frequency[c]++;
             }
+
+            SetUpCumulativeFrequency();
         }
 
-        private string GetCodingNumber()
+        private void SetUpCumulativeFrequency()
         {
-            var leftCorner = 0d;
-            var rightCorner = 1d;
+            _cumulativeFreq = new Dictionary<char, long>();
 
-            SetLeftAndRightCorners(ref leftCorner, ref rightCorner);
-
-            return GetClosestNumber(leftCorner, rightCorner);
-        }
-
-        private static string GetClosestNumber(double leftCorner, double rightCorner)
-        {
-            var left = leftCorner.ToString(CultureInfo.InvariantCulture);
-            var right = rightCorner.ToString(CultureInfo.InvariantCulture);
-            var isMatchFound = false;
-            var iterator = 2;
-            var codingNumberBuilder = new StringBuilder();
-
-            while (!isMatchFound)
+            var total = 0L;
+            for (var i = 0; i < 256; i++)
             {
-                if (left[iterator] == right[iterator])
+                var c = (char)i;
+                if (_frequency.ContainsKey(c))
                 {
-                    codingNumberBuilder.Append(left[iterator]);
-                    iterator++;
-                }
-                else
-                {
-                    var nextSymbol = (left[iterator] + 1) % '0' + '0';
-                    codingNumberBuilder.Append((char)nextSymbol);
-                    isMatchFound = true;
+                    var currentFreq = _frequency[c];
+                    _cumulativeFreq[c] = total;
+                    total += currentFreq;
                 }
             }
-
-            return codingNumberBuilder.ToString();
         }
 
-        private void SetLeftAndRightCorners(ref double leftCorner, ref double rightCorner)
+        public override string Encode()
         {
-            foreach (var character in CurrentString)
+            BigInteger baseValue = CurrentString.Length, 
+                lowerValue = 0, 
+                productFreq = 1;
+
+            foreach (var c in CurrentString)
             {
-                var intervals = new List<Interval>();
-                var iterator = leftCorner;
-                var len = rightCorner - leftCorner;
-                var countOfSymbols = CurrentString.Length;
-
-                AddIntervalsInList(len, countOfSymbols, iterator, intervals);
-
-                var index = _indexes[character];
-                var currentInterval = intervals[index];
-
-                leftCorner = currentInterval.LeftCorner;
-                rightCorner = currentInterval.RightCorner;
+                BigInteger currentCumFreq = _cumulativeFreq[c];
+                lowerValue = lowerValue * baseValue + currentCumFreq * productFreq;
+                productFreq *= _frequency[c];
             }
-        }
 
-        private void AddIntervalsInList(double len, int countOfSymbols, double iterator, ICollection<Interval> intervals)
-        {
-            foreach (var symbol in Frequency)
+            BigInteger upper = lowerValue + productFreq,
+                bigRadix = 10;
+            var power = 0;
+
+            while (true)
             {
-                var sectionLen = len * ((double)symbol.Frequency / countOfSymbols);
-
-                var interval = new Interval(iterator, iterator + sectionLen);
-                intervals.Add(interval);
-                iterator += sectionLen;
+                productFreq /= bigRadix;
+                if (productFreq == 0) break;
+                power++;
             }
+
+            var diff = (upper - 1) / (BigInteger.Pow(bigRadix, power));
+
+            return $"{diff} * 10^{power}";
         }
     }
 }

@@ -60,14 +60,14 @@ namespace Coding.ShannonFano
             ByPass(tree.Right, codes, new StringBuilder(sb + "1"));
         }
 
-        private static Symbol GetSplitedFrequencyRepresentation(string frequencyString, IDictionary<string, int> frequencyDictionary) //recursive
+        private static Symbol GetSplitedFrequencyRepresentation(string frequencyString, IDictionary<string, long> frequencyDictionary) //recursive
         {
             if (frequencyString.Length == 1)
                 return new Symbol(frequencyString, frequencyDictionary[frequencyString]);
 
             var leftIterator = 0;
             var rightIterator = frequencyString.Length - 1;
-            int leftSum = frequencyDictionary[frequencyString[leftIterator].ToString()],
+            long leftSum = frequencyDictionary[frequencyString[leftIterator].ToString()],
                 rightSum = frequencyDictionary[frequencyString[rightIterator].ToString()];
 
             leftIterator++; rightIterator--;

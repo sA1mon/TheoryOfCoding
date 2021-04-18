@@ -1,14 +1,13 @@
-﻿
-using Coding.ArithmeticCoding;
+﻿using Coding.ArithmeticCoding;
 using NUnit.Framework;
 
 namespace CodingUnitTests
 {
     public class ArithmeticCoding
     {
-        [TestCase("abcaa", "46")]
-        [TestCase("aabcb", "121")]
-        [TestCase("abcda", "221")]
+        [TestCase("abcaa", "145 * 10^1")]
+        [TestCase("aabcb", "39 * 10^1")]
+        [TestCase("abcda", "693 * 10^0")]
         public void EncodingTest(string initial, string expected)
         {
             //arrange
