@@ -53,6 +53,9 @@
     <Compile Include="Haffman\Resources\CharComparer.cs" />
     <Compile Include="RleAndBurrowsWheeler\Coder.cs" />
     <Compile Include="RleAndBurrowsWheeler\Decoder.cs" />
+    <Compile Include="RleAndBurrowsWheeler\Resources\Bw.cs" />
+    <Compile Include="RleAndBurrowsWheeler\Resources\Rle.cs" />
+    <Compile Include="RleAndBurrowsWheeler\Resources\TransformResult.cs" />
     <Compile Include="Symbol.cs" />
     <Compile Include="ShannonFano\Coder.cs" />
     <Compile Include="ShannonFano\Decoder.cs" />
