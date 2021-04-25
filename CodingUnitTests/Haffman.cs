@@ -21,9 +21,9 @@ namespace CodingUnitTests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestCase("aaaabbbcde", "000010101011011111110", 3.81d)]
-        [TestCase("a", "0", 8d)]
-        [TestCase("aaaaaaaa", "00000000", 8d)]
+        [TestCase("aaaabbbcde", "000010101011011111110", 7.62d)]
+        [TestCase("a", "0", 16d)]
+        [TestCase("aaaaaaaa", "00000000", 16d)]
         public void CompressCoefficient(string initial, string compressed, double expectedValue)
         {
             //arrange, act

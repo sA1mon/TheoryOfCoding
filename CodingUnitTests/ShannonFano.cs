@@ -21,16 +21,16 @@ namespace CodingUnitTests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestCase("aaabbcde", "000101011011101111", 3.56d)]
-        [TestCase("a", "0", 8d)]
-        [TestCase("aaaaaaaa", "00000000", 8d)]
+        [TestCase("aaabbcde", "000101011011101111", 7.11d)]
+        [TestCase("a", "0", 16d)]
+        [TestCase("aaaaaaaa", "00000000", 16d)]
         public void CompressCoefficient(string initial, string compressed, double expectedValue)
         {
             //arrange, act
             var actual = Compress.CompressGetter.GetCompress(initial, compressed);
 
             //assert
-            Assert.AreEqual(actual, expectedValue);
+            Assert.AreEqual(expectedValue, actual);
         }
 
         [TestCase("aaabbcde", "000101011011101111")]

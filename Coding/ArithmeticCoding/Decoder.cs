@@ -1,29 +1,36 @@
-﻿using Coding.ArithmeticCoding.Resources;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using System.Text;
 
 namespace Coding.ArithmeticCoding
 {
-    public sealed class Decoder : ArithmeticBase
+    public sealed class Decoder : BaseDecoder
     {
-        public Decoder(IDictionary<char, long> frequency)
+        private readonly BigInteger _number;
+        private readonly int _power;
+        private new readonly IDictionary<char, long> Codes;
+        private IDictionary<char, long> _cumulativeFreq;
+
+        public Decoder(IDictionary<char, long> codes, BigInteger number, int power) : base(null)
         {
-            Frequency = frequency;
+            Codes = codes;
+            _number = number;
+            _power = power;
+
             SetUpCumulativeFrequency();
         }
 
-        public string Decode(BigInteger number, int power)
+        public override string Decode()
         {
             BigInteger powr = 10,
-            enc = number * BigInteger.Pow(powr, power);
-            var sumOfFrequencies = Frequency.Values.Sum();
+            enc = _number * BigInteger.Pow(powr, _power);
+            var sumOfFrequencies = Codes.Values.Sum();
 
             var reverseCumFreq = new Dictionary<long, char>();
-            foreach (var key in CumulativeFreq.Keys)
+            foreach (var key in _cumulativeFreq.Keys)
             {
-                var value = CumulativeFreq[key];
+                var value = _cumulativeFreq[key];
                 reverseCumFreq[value] = key;
             }
 
@@ -47,14 +54,31 @@ namespace Coding.ArithmeticCoding
                 BigInteger pow = BigInteger.Pow(bigBase, (int)i),
                     div = enc / pow;
                 var c = reverseCumFreq[(long)div];
-                BigInteger fv = Frequency[c],
-                    cv = CumulativeFreq[c],
+                BigInteger fv = Codes[c],
+                    cv = _cumulativeFreq[c],
                     diff = enc - pow * cv;
                 enc = diff / fv;
                 decoded.Append(c);
             }
 
             return decoded.ToString();
+        }
+
+        private void SetUpCumulativeFrequency()
+        {
+            _cumulativeFreq = new Dictionary<char, long>();
+
+            var total = 0L;
+            for (var i = 0; i < 2048; i++)
+            {
+                var c = (char)i;
+                if (Codes.ContainsKey(c))
+                {
+                    var currentFreq = Codes[c];
+                    _cumulativeFreq[c] = total;
+                    total += currentFreq;
+                }
+            }
         }
     }
 }

@@ -2,13 +2,16 @@
 
 namespace Coding.ArithmeticCoding.Resources
 {
-    public class ArithmeticBase
+    public class ArithmeticBase : BaseCoder
     {
-        public string CurrentString { get; set; }
-        protected IDictionary<char, long> Frequency;
+        protected new IDictionary<char, long> Frequency;
         protected IDictionary<char, long> CumulativeFreq;
 
-        protected virtual void FillFrequencyList(bool needsSort)
+        public ArithmeticBase(string initial) : base(initial)
+        {
+        }
+
+        protected new virtual void FillFrequencyList(bool needsSort)
         {
             Frequency = new Dictionary<char, long>();
 

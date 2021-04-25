@@ -1,33 +1,19 @@
-﻿using Coding.ArithmeticCoding.Resources;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Numerics;
 
 namespace Coding.ArithmeticCoding
 {
-    public sealed class Coder : ArithmeticBase
+    public sealed class Coder : BaseCoder
     {
-        public Coder(string initial)
+        private new Dictionary<char, long> Frequency;
+        private IDictionary<char, long> CumulativeFreq;
+
+        public Coder(string initial) : base(initial)
         {
-            CurrentString = initial;
             FillFrequencyList(false);
         }
 
-        protected override void FillFrequencyList(bool needsSort)
-        {
-            Frequency = new Dictionary<char, long>();
-
-            foreach (var c in CurrentString)
-            {
-                if (!Frequency.ContainsKey(c))
-                    Frequency[c] = 0;
-
-                Frequency[c]++;
-            }
-
-            SetUpCumulativeFrequency();
-        }
-
-        public string Encode()
+        public override string Encode()
         {
             BigInteger baseValue = CurrentString.Length,
                 lowerValue = 0,
@@ -54,6 +40,39 @@ namespace Coding.ArithmeticCoding
             var diff = (upper - 1) / (BigInteger.Pow(bigRadix, power));
 
             return $"{diff} * 10^{power}";
+        }
+
+
+        protected override void FillFrequencyList(bool needsSort)
+        {
+            Frequency = new Dictionary<char, long>();
+
+            foreach (var c in CurrentString)
+            {
+                if (!Frequency.ContainsKey(c))
+                    Frequency[c] = 0;
+
+                Frequency[c]++;
+            }
+
+            SetUpCumulativeFrequency();
+        }
+
+        private void SetUpCumulativeFrequency()
+        {
+            CumulativeFreq = new Dictionary<char, long>();
+
+            var total = 0L;
+            for (var i = 0; i < 2048; i++)
+            {
+                var c = (char)i;
+                if (Frequency.ContainsKey(c))
+                {
+                    var currentFreq = Frequency[c];
+                    CumulativeFreq[c] = total;
+                    total += currentFreq;
+                }
+            }
         }
     }
 }
