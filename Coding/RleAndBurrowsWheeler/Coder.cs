@@ -5,15 +5,11 @@ namespace Coding.RleAndBurrowsWheeler
 {
     public class Coder : BaseCoder
     {
-        public Coder(string initial) : base(initial)
+        public override string Encode(string str)
         {
-        }
-
-        public override string Encode()
-        {
-            var shifts = new List<string>(Bw.GetShiftsOf(CurrentString));
+            var shifts = new List<string>(Bw.GetShiftsOf(str));
             shifts.Sort();
-            var position = Bw.GetIndexOf(CurrentString, shifts);
+            var position = Bw.GetIndexOf(str, shifts);
 
             return Rle.Transform(shifts, position).ToString();
         }

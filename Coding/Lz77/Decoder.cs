@@ -6,18 +6,14 @@ namespace Coding.Lz77
 {
     public class Decoder : BaseDecoder
     {
-        private new IEnumerable<Node> Codes;
-
-        public Decoder(IEnumerable<Node> codes) : base(null)
-        {
-            Codes = codes;
-        }
-
-        public override string Decode()
+        public override string Decode(params object[] args)
         {
             var decodeBuilder = new StringBuilder();
 
-            foreach (var node in Codes)
+            if (!(args[0] is IEnumerable<Node> codes)) 
+                return decodeBuilder.ToString();
+
+            foreach (var node in codes)
             {
                 if (node.Length > 0)
                 {

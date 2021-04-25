@@ -7,25 +7,17 @@ namespace Coding.ArithmeticCoding
 {
     public sealed class Decoder : BaseDecoder
     {
-        private readonly BigInteger _number;
-        private readonly int _power;
-        private new readonly IDictionary<char, long> Codes;
+        private BigInteger _number;
+        private int _power;
+        private IDictionary<char, long> _codes;
         private IDictionary<char, long> _cumulativeFreq;
 
-        public Decoder(IDictionary<char, long> codes, BigInteger number, int power) : base(null)
+        public override string Decode(params object[] args)
         {
-            Codes = codes;
-            _number = number;
-            _power = power;
-
-            SetUpCumulativeFrequency();
-        }
-
-        public override string Decode()
-        {
+            SetupDecoder(args);
             BigInteger powr = 10,
             enc = _number * BigInteger.Pow(powr, _power);
-            var sumOfFrequencies = Codes.Values.Sum();
+            var sumOfFrequencies = _codes.Values.Sum();
 
             var reverseCumFreq = new Dictionary<long, char>();
             foreach (var key in _cumulativeFreq.Keys)
@@ -54,7 +46,7 @@ namespace Coding.ArithmeticCoding
                 BigInteger pow = BigInteger.Pow(bigBase, (int)i),
                     div = enc / pow;
                 var c = reverseCumFreq[(long)div];
-                BigInteger fv = Codes[c],
+                BigInteger fv = _codes[c],
                     cv = _cumulativeFreq[c],
                     diff = enc - pow * cv;
                 enc = diff / fv;
@@ -62,6 +54,15 @@ namespace Coding.ArithmeticCoding
             }
 
             return decoded.ToString();
+        }
+
+        private void SetupDecoder(IReadOnlyList<object> args)
+        {
+            _codes = args[0] as IDictionary<char, long>;
+            _number = (BigInteger) args[1];
+            _power = (int) args[2];
+
+            SetUpCumulativeFrequency();
         }
 
         private void SetUpCumulativeFrequency()
@@ -72,9 +73,9 @@ namespace Coding.ArithmeticCoding
             for (var i = 0; i < 2048; i++)
             {
                 var c = (char)i;
-                if (Codes.ContainsKey(c))
+                if (_codes.ContainsKey(c))
                 {
-                    var currentFreq = Codes[c];
+                    var currentFreq = _codes[c];
                     _cumulativeFreq[c] = total;
                     total += currentFreq;
                 }

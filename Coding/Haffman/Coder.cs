@@ -7,18 +7,12 @@ namespace Coding.Haffman
 {
     public sealed class Coder : BaseCoder
     {
-        public Coder(string initial) : base(initial)
+        public override string Encode(string str)
         {
-            Frequency = new List<Symbol>();
-            FillFrequencyList(true);
-        }
-
-        public override string Encode()
-        {
-            var codes = GetCodes();
+            var codes = GetCodes(str);
             var sb = new StringBuilder();
 
-            foreach (var key in CurrentString)
+            foreach (var key in str)
             {
                 sb.Append(codes[key]);
             }
@@ -26,8 +20,9 @@ namespace Coding.Haffman
             return sb.ToString();
         }
 
-        public IDictionary<char, string> GetCodes()
+        public IDictionary<char, string> GetCodes(string str)
         {
+            FillFrequencyList(str, true);
             var codes = new Dictionary<char, string>();
             var frequency = new List<Symbol>(Frequency);
             var charComparer = new CharComparer();

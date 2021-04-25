@@ -15,10 +15,10 @@ namespace CodingUnitTests
         public void EncodingTest(string initial, string expected)
         {
             //arrange
-            var coder = new Coder(initial);
+            var coder = new Coder();
 
             //act
-            var actual = coder.Encode();
+            var actual = coder.Encode(initial);
 
             //assert
             Assert.AreEqual(expected, actual);
@@ -33,8 +33,8 @@ namespace CodingUnitTests
         public void DecodingTest(string expected)
         {
             //arrange
-            var coder = new Coder(expected);
-            var code = coder.Encode();
+            var coder = new Coder();
+            var code = coder.Encode(expected);
             var splitedCode = code
                 .Split(new[] { " * 10^" }, StringSplitOptions.RemoveEmptyEntries);
             var actualCode = new
@@ -52,10 +52,10 @@ namespace CodingUnitTests
                 freq[c]++;
             }
 
-            var decoder = new Decoder(freq, actualCode.Number, actualCode.Power);
+            var decoder = new Decoder();
 
             //act
-            var actual = decoder.Decode();
+            var actual = decoder.Decode(freq, actualCode.Number, actualCode.Power);
 
             //assert
             Assert.AreEqual(expected, actual);
