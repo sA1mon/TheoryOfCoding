@@ -23,7 +23,6 @@ namespace Coding.Haffman
         public IDictionary<char, string> GetCodes(string str)
         {
             FillFrequencyList(str, true);
-            var codes = new Dictionary<char, string>();
             var frequency = new List<Symbol>(Frequency);
             var charComparer = new CharComparer();
 
@@ -45,13 +44,15 @@ namespace Coding.Haffman
                 frequency.Sort(charComparer);
             }
 
-            FillCodesDictionary(frequency.First(), codes);
+            var codes = FillCodesDictionary(frequency.First());
 
             return codes;
         }
 
-        private static void FillCodesDictionary(Symbol symbol, IDictionary<char, string> codes)
+        private static IDictionary<char, string> FillCodesDictionary(Symbol symbol)
         {
+            var codes = new Dictionary<char, string>();
+
             void ByPass(Symbol current, StringBuilder sb)
             {
                 while (true)
@@ -69,6 +70,8 @@ namespace Coding.Haffman
             }
 
             ByPass(symbol, new StringBuilder());
+
+            return codes;
         }
     }
 }

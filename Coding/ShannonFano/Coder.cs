@@ -33,13 +33,13 @@ namespace Coding.ShannonFano
                     x => x.Frequency);
 
             var tree = GetSplitedFrequencyRepresentation(stringBuilder.ToString(), frequencyDictionary);
-            var codes = new Dictionary<char, string>();
-            ByPass(tree, codes, new StringBuilder());
+            IDictionary<char, string> codes = new Dictionary<char, string>();
+            ByPass(tree, ref codes, new StringBuilder());
 
             return codes;
         }
 
-        private static void ByPass(Symbol tree, IDictionary<char, string> codes, StringBuilder sb)
+        private static void ByPass(Symbol tree, ref IDictionary<char, string> codes, StringBuilder sb)
         {
             while (true)
             {
@@ -51,7 +51,7 @@ namespace Coding.ShannonFano
                     codes.Add(tree.Current[0], code == string.Empty ? "0" : code);
                 }
 
-                ByPass(tree.Left, codes, new StringBuilder(sb + "0"));
+                ByPass(tree.Left, ref codes, new StringBuilder(sb + "0"));
                 tree = tree.Right;
                 sb = new StringBuilder(sb + "1");
             }
