@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 
 namespace Coding.RleAndBurrowsWheeler.Resources
 {
@@ -18,14 +18,16 @@ namespace Coding.RleAndBurrowsWheeler.Resources
 
         public override string ToString()
         {
-            var sb = new StringBuilder(Position.ToString());
-
-            for (var i = 0; i < Chars.Count; i++)
+            var sb = new List<string>()
             {
-                sb.Append(string.Concat(Chars[i], Count[i].ToString()));
-            }
+                Position.ToString()
+            };
 
-            return sb.ToString();
+            sb.AddRange(Chars
+                    .Select((t, i) =>
+                        string.Concat(t, Count[i].ToString())));
+
+            return string.Join(" ", sb);
         }
     }
 }

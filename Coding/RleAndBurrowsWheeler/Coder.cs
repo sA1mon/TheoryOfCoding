@@ -3,22 +3,19 @@ using System.Collections.Generic;
 
 namespace Coding.RleAndBurrowsWheeler
 {
-    public class Coder
+    public class Coder : BaseCoder
     {
-        public string CurrentString { get; set; }
-
-        public Coder(string initial)
+        public Coder(string initial) : base(initial)
         {
-            CurrentString = initial;
         }
 
-        public TransformResult Encode()
+        public override string Encode()
         {
             var shifts = new List<string>(Bw.GetShiftsOf(CurrentString));
             shifts.Sort();
             var position = Bw.GetIndexOf(CurrentString, shifts);
 
-            return Rle.Transform(shifts, position);
+            return Rle.Transform(shifts, position).ToString();
         }
     }
 }
