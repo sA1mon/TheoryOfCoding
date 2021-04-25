@@ -52,10 +52,10 @@ namespace CodingUnitTests
                 freq[c]++;
             }
 
-            var decoder = new Decoder(freq);
+            var decoder = new Decoder(freq, actualCode.Number, actualCode.Power);
 
             //act
-            var actual = decoder.Decode(actualCode.Number, actualCode.Power);
+            var actual = decoder.Decode();
 
             //assert
             Assert.AreEqual(expected, actual);
