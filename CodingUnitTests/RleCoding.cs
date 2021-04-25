@@ -8,14 +8,14 @@ namespace CodingUnitTests
     [TestFixture]
     public class RleCoding
     {
-        [TestCase("abracadabraabracadabra", "5r2d2a2r2c2a8b4")]
+        [TestCase("abracadabraabracadabra", "5 r2 d2 a2 r2 c2 a8 b4")]
         public void EncodingTest(string str, string expected)
         {
             //arrange
-            var coder = new Coder(str);
+            var coder = new Coder();
 
             //act
-            var actual = coder.Encode().ToString();
+            var actual = coder.Encode(str);
 
             //assert
             Assert.AreEqual(expected, actual);
@@ -33,10 +33,10 @@ namespace CodingUnitTests
             {
                 2, 2, 2, 2, 2, 8, 4
             };
-            var decoder = new Decoder(new TransformResult(5, chars, count));
+            var decoder = new Decoder();
 
             //act
-            var actual = decoder.Decode();
+            var actual = decoder.Decode(new TransformResult(5, chars, count));
 
             //assert
             Assert.AreEqual("abracadabraabracadabra", actual);

@@ -7,17 +7,15 @@ namespace Coding.Lz77
 {
     public class Coder : BaseCoder
     {
-        public Coder(string currentString) : base(string.Concat(currentString, '\0'))
+        private string _decoded;
+        public override string Encode(string str)
         {
-        }
-
-        public override string Encode()
-        {
+            _decoded = string.Concat(str, '\0');
             var nodes = new List<Node>();
             var buffer = new Buffer();
             var position = 0;
 
-            while (position < CurrentString.Length)
+            while (position < _decoded.Length)
             {
                 var pair = FindMatching(buffer, position);
                 var offset = pair.Key;
@@ -26,7 +24,7 @@ namespace Coding.Lz77
                 buffer.Shift(length + 1);
 
                 position += length;
-                nodes.Add(new Node(offset, length, CurrentString[position]));
+                nodes.Add(new Node(offset, length, _decoded[position]));
                 position++;
             }
 
@@ -49,7 +47,7 @@ namespace Coding.Lz77
         {
             int mod = buffer.Length, pos = buffer.Length;
 
-            var buffered = buffer.GetBufferedString(CurrentString);
+            var buffered = buffer.GetBufferedString(_decoded);
             var optimal = new KeyValuePair<int, int>(0, 0);
 
             while (pos > 0)
@@ -63,7 +61,7 @@ namespace Coding.Lz77
 
                 var currentLen = 0;
                 var currentPosition = position;
-                while (currentPosition < CurrentString.Length && buffered[start] == CurrentString[currentPosition])
+                while (currentPosition < _decoded.Length && buffered[start] == _decoded[currentPosition])
                 {
                     start = (start + 1) % mod;
                     currentPosition++;
@@ -82,7 +80,7 @@ namespace Coding.Lz77
 
         private int FindStartPosition(string buffered, int headPosition, int pos)
         {
-            var firstChar = CurrentString[headPosition];
+            var firstChar = _decoded[headPosition];
 
             while (pos > 0)
             {

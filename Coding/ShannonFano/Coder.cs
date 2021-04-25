@@ -6,19 +6,12 @@ namespace Coding.ShannonFano
 {
     public sealed class Coder : BaseCoder
     {
-        public Coder(string currentString) : base(currentString)
-        {
-            CurrentString = currentString;
-            Frequency = new List<Symbol>();
-            FillFrequencyList(true);
-        }
-
-        public override string Encode()
+        public override string Encode(string str)
         {
             var encodeBuilder = new StringBuilder();
-            var codes = GetCodes();
+            var codes = GetCodes(str);
 
-            foreach (var symbol in CurrentString)
+            foreach (var symbol in str)
             {
                 encodeBuilder.Append(codes[symbol]);
             }
@@ -26,8 +19,9 @@ namespace Coding.ShannonFano
             return encodeBuilder.ToString();
         }
 
-        public IDictionary<char, string> GetCodes()
+        public IDictionary<char, string> GetCodes(string str)
         {
+            FillFrequencyList(str, true);
             var stringBuilder = new StringBuilder();
             foreach (var symbol in Frequency.Select(x => x.Current))
             {
@@ -45,22 +39,25 @@ namespace Coding.ShannonFano
             return codes;
         }
 
-        private static void ByPass(Symbol tree, Dictionary<char, string> codes, StringBuilder sb)
+        private static void ByPass(Symbol tree, IDictionary<char, string> codes, StringBuilder sb)
         {
-            if (tree == null)
-                return;
-
-            if (tree.Current.Length == 1)
+            while (true)
             {
-                var code = sb.ToString();
-                codes.Add(tree.Current[0], code == string.Empty ? "0" : code);
-            }
+                if (tree == null) return;
 
-            ByPass(tree.Left, codes, new StringBuilder(sb + "0"));
-            ByPass(tree.Right, codes, new StringBuilder(sb + "1"));
+                if (tree.Current.Length == 1)
+                {
+                    var code = sb.ToString();
+                    codes.Add(tree.Current[0], code == string.Empty ? "0" : code);
+                }
+
+                ByPass(tree.Left, codes, new StringBuilder(sb + "0"));
+                tree = tree.Right;
+                sb = new StringBuilder(sb + "1");
+            }
         }
 
-        private static Symbol GetSplitedFrequencyRepresentation(string frequencyString, IDictionary<string, long> frequencyDictionary) //recursive
+        private static Symbol GetSplitedFrequencyRepresentation(string frequencyString, IDictionary<string, long> frequencyDictionary)
         {
             if (frequencyString.Length == 1)
                 return new Symbol(frequencyString, frequencyDictionary[frequencyString]);

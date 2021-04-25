@@ -12,10 +12,10 @@ namespace CodingUnitTests
         public void EncodeTesting(string input, string expected)
         {
             //arrange
-            var coder = new Coder(input);
+            var coder = new Coder();
 
             //act
-            var actual = coder.Encode();
+            var actual = coder.Encode(input);
 
             //assert
             Assert.AreEqual(expected, actual);
@@ -33,20 +33,17 @@ namespace CodingUnitTests
             Assert.AreEqual(actual, expectedValue);
         }
 
-        [TestCase("aaaabbbcde", "000010101011011111110")]
-        [TestCase("a", "0")]
-        [TestCase("aaaaaaaa", "00000000")]
-        public void DecodeTest(string input, string decoded)
+        [Test]
+        public void DoublePenetration()
         {
             //arrange
-            var coder = new Coder(input);
-            var decoder = new Decoder(decoded, coder.GetCodes());
+            var coder = new Coder();
 
             //act
-            var actual = decoder.Decode();
+            var actual = coder.Encode("aaaabbbcde");
 
             //assert
-            Assert.AreEqual(input, actual);
+            Assert.AreEqual("000010101011011111110", actual);
         }
     }
 }

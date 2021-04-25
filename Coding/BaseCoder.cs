@@ -4,26 +4,20 @@ using System.Linq;
 
 namespace Coding
 {
-    public class BaseCoder
+    public abstract class BaseCoder
     {
-        public string CurrentString { get; protected set; }
         protected List<Symbol> Frequency;
 
-        public BaseCoder(string initial)
+        public virtual string Encode(string str)
         {
-            CurrentString = initial;
-            Frequency = new List<Symbol>();
-        }
+            return str;
+        } 
 
-        public virtual string Encode()
-        {
-            return CurrentString;
-        }
-
-        protected virtual void FillFrequencyList(bool needsSort)
+        protected virtual void FillFrequencyList(string str, bool needsSort)
         {
             var freq = new Dictionary<string, int>();
-            foreach (var symbol in CurrentString.Select(x => x.ToString()))
+            Frequency = new List<Symbol>();
+            foreach (var symbol in str.Select(x => x.ToString()))
             {
                 if (!freq.ContainsKey(symbol))
                     freq[symbol] = 0;

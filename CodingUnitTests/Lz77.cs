@@ -17,7 +17,7 @@ namespace CodingUnitTests
         public void EncodingTest()
         {
             //arrange
-            var coder = new Coder("abacabacabadaca");
+            var coder = new Coder();
             var nodes = new List<Node>
             {
                 new Node(0, 0, 'a'),
@@ -36,7 +36,7 @@ namespace CodingUnitTests
             var expected = sb.ToString();
 
             //act
-            var actual = coder.Encode();
+            var actual = coder.Encode("abacabacabadaca");
 
             //assert
             Assert.AreEqual(expected, actual);
@@ -46,14 +46,14 @@ namespace CodingUnitTests
         public void DecodeTesting()
         {
             //arrange
-            var coder = new Coder("abacabacabadaca");
-            var decoder = new Decoder(Parse(coder.Encode()));
+            var coder = new Coder();
+            var decoder = new Decoder();
 
             //act
-            var actual = decoder.Decode();
+            var actual = decoder.Decode(Parse(coder.Encode("У меня болезнь зоофилия")));
 
             //assert
-            Assert.AreEqual("abacabacabadaca", actual);
+            Assert.AreEqual("У меня болезнь зоофилия", actual);
         }
 
         private static IEnumerable<Node> Parse(string str)

@@ -2,20 +2,8 @@
 
 namespace Coding
 {
-    public class BaseDecoder
+    public abstract class BaseDecoder
     {
-        protected readonly IDictionary<string, char> Codes;
-
-        public BaseDecoder(IDictionary<string, char> codes)
-        {
-            Codes = codes;
-        }
-
-        public string Encoded { get; protected set; }
-
-        public virtual string Decode()
-        {
-            return Encoded;
-        }
+        public abstract string Decode(params object[] args);
     }
 }

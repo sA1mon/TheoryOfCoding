@@ -4,18 +4,12 @@ using System.Text;
 
 namespace Coding.RleAndBurrowsWheeler
 {
-    public class Decoder
+    public class Decoder : BaseDecoder
     {
-        private TransformResult _transformResult;
-
-        public Decoder(TransformResult tr)
+        public override string Decode(params object[] args)
         {
-            _transformResult = tr;
-        }
-
-        public string Decode()
-        {
-            var lastColumn = GetLastColumnAsString();
+            var transformResult = args[0] as TransformResult;
+            var lastColumn = GetLastColumnAsString(transformResult);
             var shifts = new List<StringBuilder>();
             var sbComparer = new StringBuilderComparer();
 
@@ -34,16 +28,16 @@ namespace Coding.RleAndBurrowsWheeler
                 shifts.Sort(sbComparer);
             }
 
-            return shifts[_transformResult.Position - 1].ToString();
+            return shifts[transformResult.Position - 1].ToString();
         }
 
-        private string GetLastColumnAsString()
+        private static string GetLastColumnAsString(TransformResult transformResult)
         {
             var sb = new StringBuilder();
 
-            for (var i = 0; i < _transformResult.Chars.Count; i++)
+            for (var i = 0; i < transformResult.Chars.Count; i++)
             {
-                sb.Append(_transformResult.Chars[i], _transformResult.Count[i]);
+                sb.Append(transformResult.Chars[i], transformResult.Count[i]);
             }
 
             return sb.ToString();
