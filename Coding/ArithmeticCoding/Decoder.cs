@@ -12,6 +12,18 @@ namespace Coding.ArithmeticCoding
         private IDictionary<char, long> _codes;
         private IDictionary<char, long> _cumulativeFreq;
 
+        /// <summary>
+        /// Decode string that encoded by arithmetic coding.
+        /// </summary>
+        /// <param name="args">
+        /// <para>arg[0]: IDictionary&lt;char, long&gt; codes</para>
+        /// <para>arg[1]: BigInteger number</para>
+        /// arg[2]: int power
+        /// </param>
+        /// <remarks>
+        /// Example input: [{'a', 4L}, {'b', 1L}, {'c', 1L}], (BigInteger)1472783434299, 16
+        /// </remarks>
+        /// <returns>Decoded string.</returns>
         public override string Decode(params object[] args)
         {
             SetupDecoder(args);
@@ -70,7 +82,7 @@ namespace Coding.ArithmeticCoding
             _cumulativeFreq = new Dictionary<char, long>();
 
             var total = 0L;
-            for (var i = 0; i < 2048; i++)
+            for (var i = 0; i < 4096 * 4; i++)
             {
                 var c = (char)i;
                 if (_codes.ContainsKey(c))

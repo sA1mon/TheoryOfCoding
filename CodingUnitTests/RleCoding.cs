@@ -2,13 +2,18 @@
 using Coding.RleAndBurrowsWheeler.Resources;
 using NUnit.Framework;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace CodingUnitTests
 {
     [TestFixture]
     public class RleCoding
     {
+        [TestCase("aaa&&&aaa", "6 a1 &2 a5 &1")]
         [TestCase("abracadabraabracadabra", "5 r2 d2 a2 r2 c2 a8 b4")]
+        [TestCase("never gonna give you up\r\nnever gonna give you up\r\nnever gonna give you up\r\n",
+            "43 \r3 p3 a3 r3 u3 e3 n3 v6 n3  6 g3 n3 \n3 o3 g3 y3 u3 e3 o3  3 i3 e3  3")]
         public void EncodingTest(string str, string expected)
         {
             //arrange
@@ -21,25 +26,30 @@ namespace CodingUnitTests
             Assert.AreEqual(expected, actual);
         }
 
-        [Test]
-        public void DecodingTest()
+        [TestCase("fsadfsad'''sfaf][][[][")]
+        [TestCase("jsdkfjkask;lks;a 's'afds ^^^%f655")]
+        [TestCase("never gonna give you up\r\nnever gonna give you up\r\nnever gonna give you up\r\n")]
+        public void DecodingTest(string input)
         {
             //arrange
-            var chars = new List<char>
-            {
-                'r', 'd', 'a', 'r', 'c', 'a', 'b'
-            };
-            var count = new List<int>
-            {
-                2, 2, 2, 2, 2, 8, 4
-            };
             var decoder = new Decoder();
+            var code = new Coder().Encode(input);
+            var regex = new Regex(@"(?<=\d )(.)(\d+)", RegexOptions.Singleline);
+
+            var c = new List<char>();
+            var i = new List<int>();
+            foreach (Match match in regex.Matches(code))
+            {
+                c.Add(char.Parse(match.Groups[1].Value));
+                i.Add(int.Parse(match.Groups[2].Value));
+            }
+            var pos = int.Parse(code.Split(' ').First());
 
             //act
-            var actual = decoder.Decode(new TransformResult(5, chars, count));
+            var actual = decoder.Decode(new TransformResult(pos, c, i));
 
             //assert
-            Assert.AreEqual("abracadabraabracadabra", actual);
+            Assert.AreEqual(input, actual);
         }
     }
 }

@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Numerics;
 
 namespace CodingUnitTests
@@ -60,6 +61,20 @@ namespace CodingUnitTests
             //assert
             Assert.AreEqual(expected, actual);
             TestContext.WriteLine($"Code: {code}\nExpected string: {expected}\nActual string: {actual}");
+        }
+
+        [Test]
+        public void WarAndWorldTest()
+        {
+            //arrange
+            var text = File.ReadAllText(@"D:\MyDownloads\WarAndWorld.txt");
+            var coder = new Coder();
+
+            //act
+            var actual = coder.Encode(text);
+
+            //assert
+            Assert.True(true);
         }
     }
 }

@@ -31,6 +31,11 @@ namespace Coding.Lz77
             return BuildNodes(nodes);
         }
 
+        public override object GetCodes()
+        {
+            return null;
+        }
+
         private static string BuildNodes(IEnumerable<Node> nodes)
         {
             var sb = new StringBuilder();

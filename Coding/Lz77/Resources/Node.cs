@@ -1,5 +1,8 @@
 ﻿namespace Coding.Lz77.Resources
 {
+    /// <summary>
+    /// Contains nodes {Offset, Length, Next}. <see href="https://neerc.ifmo.ru/wiki/index.php?title=Алгоритмы_LZ77_и_LZ78">Details</see>
+    /// </summary>
     public class Node
     {
         public int Offset { get; set; }

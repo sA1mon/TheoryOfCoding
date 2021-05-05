@@ -3,10 +3,22 @@ using System.Linq;
 
 namespace Coding.RleAndBurrowsWheeler.Resources
 {
+    /// <summary>
+    /// Contains encode result.
+    /// </summary>
     public class TransformResult
     {
+        /// <summary>
+        /// Position in shift list.
+        /// </summary>
         public int Position { get; set; }
+        /// <summary>
+        /// List of chars.
+        /// </summary>
         public IList<char> Chars { get; set; }
+        /// <summary>
+        /// Number of consecutive characters.
+        /// </summary>
         public IList<int> Count { get; set; }
 
         public TransformResult(int position, IList<char> chars, IList<int> count)
@@ -18,7 +30,7 @@ namespace Coding.RleAndBurrowsWheeler.Resources
 
         public override string ToString()
         {
-            var sb = new List<string>()
+            var sb = new List<string>
             {
                 Position.ToString()
             };

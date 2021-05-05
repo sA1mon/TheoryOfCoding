@@ -11,7 +11,9 @@ namespace Coding
         public virtual string Encode(string str)
         {
             return str;
-        } 
+        }
+
+        public abstract object GetCodes();
 
         protected virtual void FillFrequencyList(string str, bool needsSort)
         {

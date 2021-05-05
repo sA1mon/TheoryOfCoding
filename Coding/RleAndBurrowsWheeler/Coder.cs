@@ -8,10 +8,15 @@ namespace Coding.RleAndBurrowsWheeler
         public override string Encode(string str)
         {
             var shifts = new List<string>(Bw.GetShiftsOf(str));
-            shifts.Sort();
+            shifts.Sort(new StringComparer());
             var position = Bw.GetIndexOf(str, shifts);
 
             return Rle.Transform(shifts, position).ToString();
+        }
+
+        public override object GetCodes()
+        {
+            return null;
         }
     }
 }

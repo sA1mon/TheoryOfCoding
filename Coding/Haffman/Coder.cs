@@ -7,17 +7,29 @@ namespace Coding.Haffman
 {
     public sealed class Coder : BaseCoder
     {
+        private IDictionary<char, string> _codes;
         public override string Encode(string str)
         {
-            var codes = GetCodes(str);
+            _codes = GetCodes(str);
             var sb = new StringBuilder();
 
             foreach (var key in str)
             {
-                sb.Append(codes[key]);
+                sb.Append(_codes[key]);
             }
 
             return sb.ToString();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns>IDictionary&lt;string, char&gt;</returns>
+        public override object GetCodes()
+        {
+            return _codes
+                .ToDictionary(code => code.Value, 
+                    code => code.Key);
         }
 
         public IDictionary<char, string> GetCodes(string str)

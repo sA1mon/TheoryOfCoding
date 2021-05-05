@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Coding.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -29,6 +30,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\Coding.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
@@ -64,7 +66,7 @@
     <Compile Include="RleAndBurrowsWheeler\Decoder.cs" />
     <Compile Include="RleAndBurrowsWheeler\Resources\Bw.cs" />
     <Compile Include="RleAndBurrowsWheeler\Resources\Rle.cs" />
-    <Compile Include="RleAndBurrowsWheeler\Resources\StringBuilderComparer.cs" />
+    <Compile Include="RleAndBurrowsWheeler\Resources\StringComparer.cs" />
     <Compile Include="RleAndBurrowsWheeler\Resources\TransformResult.cs" />
     <Compile Include="Symbol.cs" />
     <Compile Include="ShannonFano\Coder.cs" />

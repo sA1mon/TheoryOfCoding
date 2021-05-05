@@ -50,10 +50,10 @@ namespace CodingUnitTests
             var decoder = new Decoder();
 
             //act
-            var actual = decoder.Decode(Parse(coder.Encode("У меня болезнь зоофилия")));
+            var actual = decoder.Decode(Parse(coder.Encode("acccabcabcab")));
 
             //assert
-            Assert.AreEqual("У меня болезнь зоофилия", actual);
+            Assert.AreEqual("acccabcabcab", actual);
         }
 
         private static IEnumerable<Node> Parse(string str)

@@ -5,7 +5,7 @@ namespace Coding.ArithmeticCoding
 {
     public sealed class Coder : BaseCoder
     {
-        private Dictionary<char, long> _frequency;
+        private IDictionary<char, long> _frequency;
         private IDictionary<char, long> _cumulativeFreq;
 
         public override string Encode(string str)
@@ -38,6 +38,14 @@ namespace Coding.ArithmeticCoding
             return $"{diff} * 10^{power}";
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns>IDictionary&lt;char, long&gt;</returns>
+        public override object GetCodes()
+        {
+            return _frequency;
+        }
 
         protected override void FillFrequencyList(string str, bool needsSort)
         {
@@ -59,7 +67,7 @@ namespace Coding.ArithmeticCoding
             _cumulativeFreq = new Dictionary<char, long>();
 
             var total = 0L;
-            for (var i = 0; i < 2048; i++)
+            for (var i = 0; i < 4096 * 4; i++)
             {
                 var c = (char)i;
                 if (_frequency.ContainsKey(c))

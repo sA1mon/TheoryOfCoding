@@ -6,17 +6,29 @@ namespace Coding.ShannonFano
 {
     public sealed class Coder : BaseCoder
     {
+        private IDictionary<char, string> _codes;
         public override string Encode(string str)
         {
             var encodeBuilder = new StringBuilder();
-            var codes = GetCodes(str);
+            _codes = GetCodes(str);
 
             foreach (var symbol in str)
             {
-                encodeBuilder.Append(codes[symbol]);
+                encodeBuilder.Append(_codes[symbol]);
             }
 
             return encodeBuilder.ToString();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns>IDictionary&lt;string, char&gt;</returns>
+        public override object GetCodes()
+        {
+            return _codes
+                .ToDictionary(code => code.Value,
+                    code => code.Key);
         }
 
         public IDictionary<char, string> GetCodes(string str)
