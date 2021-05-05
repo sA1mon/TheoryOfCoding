@@ -54,9 +54,9 @@
         <Button Name="EncodeButton" Content="Encode" Click="EncodeButton_Click" Grid.Column="6" Grid.Row="1" />
         <Button Name="DecodeButton" Content="Decode"  Click="DecodeButton_Click" Grid.Column="8" Grid.Row="1" />
         <Button Name="FileButton" Content="Choose the file..." Click="FileButton_Click" Grid.Column="1" Grid.Row="1" />
-        <avalonedit:TextEditor Name="InitialAvalon" IsReadOnly="False" VerticalScrollBarVisibility="Visible"  Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="4" WordWrap="True" BorderBrush="Black" BorderThickness="1">
+        <avalonedit:TextEditor Name="InitialAvalon" IsReadOnly="False" VerticalScrollBarVisibility="Visible"  Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="4" WordWrap="True" BorderBrush="Black" BorderThickness="1" FontSize="15">
         </avalonedit:TextEditor>
-        <avalonedit:TextEditor Name="TransformedAvalon" IsReadOnly="False" VerticalScrollBarVisibility="Visible" Grid.Column="5" Grid.Row="4" Grid.ColumnSpan="4" WordWrap="True" BorderBrush="Black" BorderThickness="1">
+        <avalonedit:TextEditor Name="TransformedAvalon" IsReadOnly="False" VerticalScrollBarVisibility="Visible" Grid.Column="5" Grid.Row="4" Grid.ColumnSpan="4" WordWrap="True" BorderBrush="Black" BorderThickness="1" FontSize="15">
         </avalonedit:TextEditor>
         <Label Content="Initial text" Grid.Column="1" Grid.Row="3"  />
         <Label Content="Transformated text" Grid.Column="5"  Grid.Row="3"  />

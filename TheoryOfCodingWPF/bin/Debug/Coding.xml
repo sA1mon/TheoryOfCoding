@@ -1,0 +1,115 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Coding</name>
+    </assembly>
+    <members>
+        <member name="M:Coding.ArithmeticCoding.Coder.GetCodes">
+            <summary>
+            
+            </summary>
+            <returns>IDictionary&lt;char, long&gt;</returns>
+        </member>
+        <member name="M:Coding.ArithmeticCoding.Decoder.Decode(System.Object[])">
+            <summary>
+            Decode string that encoded by arithmetic coding.
+            </summary>
+            <param name="args">
+            <para>arg[0]: IDictionary&lt;char, long&gt; codes</para>
+            <para>arg[1]: BigInteger number</para>
+            arg[2]: int power
+            </param>
+            <remarks>
+            Example input: [{'a', 4L}, {'b', 1L}, {'c', 1L}], (BigInteger)1472783434299, 16
+            </remarks>
+            <returns>Decoded string.</returns>
+        </member>
+        <member name="M:Coding.Haffman.Coder.GetCodes">
+            <summary>
+            
+            </summary>
+            <returns>IDictionary&lt;string, char&gt;</returns>
+        </member>
+        <member name="M:Coding.Haffman.Decoder.Decode(System.Object[])">
+            <summary>
+            Decode string that encoded by arithmetic coding.
+            </summary>
+            <param name="args">
+            <para>arg[0]: string Encoded string</para>
+            <para>arg[1]: IDictionary&lt;string, char&gt; codes</para>
+            </param>
+            <remarks>
+            Example input: "0100010100", [{"01", 'a'}, {"00", 'b'}]
+            </remarks>
+            <returns>Decoded string.</returns>
+        </member>
+        <member name="M:Coding.Lz77.Decoder.Decode(System.Object[])">
+            <summary>
+            Decode string that encoded by arithmetic coding.
+            </summary>
+            <param name="args">
+            <para>arg[0]: IEnumerable&lt;Node&gt; codes — enumerable of codes {offset, length, next}</para>
+            </param>
+            <remarks>
+            Example input: [{0, 0, 'a'}, {0, 0, 'b'}, {2, 1, 'c'}, {4, 7, 'd'}, {2, 1, 'c'}, {2, 1, '\0'}]
+            </remarks>
+            <returns>Decoded string.</returns>
+        </member>
+        <member name="T:Coding.Lz77.Resources.Node">
+            <summary>
+            Contains nodes {Offset, Length, Next}. <see href="https://neerc.ifmo.ru/wiki/index.php?title=Алгоритмы_LZ77_и_LZ78">Details</see>
+            </summary>
+        </member>
+        <member name="M:Coding.RleAndBurrowsWheeler.Decoder.Decode(System.Object[])">
+            <summary>
+            Decode string that encoded by arithmetic coding.
+            </summary>
+            <param name="args">
+            <para>arg[0]: TransformResult Object of encode result</para>
+            </param>
+            <remarks>
+            Example input: {1, ['a', 'b', 'a'], [1, 2, 3]}
+            </remarks>
+            <returns>Decoded string.</returns>
+        </member>
+        <member name="T:Coding.RleAndBurrowsWheeler.Resources.TransformResult">
+            <summary>
+            Contains encode result.
+            </summary>
+        </member>
+        <member name="P:Coding.RleAndBurrowsWheeler.Resources.TransformResult.Position">
+            <summary>
+            Position in shift list.
+            </summary>
+        </member>
+        <member name="P:Coding.RleAndBurrowsWheeler.Resources.TransformResult.Chars">
+            <summary>
+            List of chars.
+            </summary>
+        </member>
+        <member name="P:Coding.RleAndBurrowsWheeler.Resources.TransformResult.Count">
+            <summary>
+            Number of consecutive characters.
+            </summary>
+        </member>
+        <member name="M:Coding.ShannonFano.Coder.GetCodes">
+            <summary>
+            
+            </summary>
+            <returns>IDictionary&lt;string, char&gt;</returns>
+        </member>
+        <member name="M:Coding.ShannonFano.Decoder.Decode(System.Object[])">
+            <summary>
+            Decode string that encoded by arithmetic coding.
+            </summary>
+            <param name="args">
+            <para>arg[0]: string Encoded string</para>
+            <para>arg[1]: IDictionary&lt;string, char&gt; codes</para>
+            </param>
+            <remarks>
+            Example input: "0100010100", [{"01", 'a'}, {"00", 'b'}]
+            </remarks>
+            <returns>Decoded string.</returns>
+        </member>
+    </members>
+</doc>
